@@ -12,10 +12,9 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import "./App.css";
-// import { Embed } from "@chakra-ui/react";
+
 import { FaTwitter, FaLinkedin } from "react-icons/fa";
-// import FormComponent from "./Components/Form/FormComponent";
-// import DisplayDetailsComponent from "./Components/Form/DisplayDetailsComponent";
+
 
 function App() {
   const [name, setName] = useState("");
@@ -36,7 +35,7 @@ function App() {
     if (obj.name !== "" || obj.course !== "" ||obj.type!=="" || obj.linkedin !== "") {
       try {
         const response = await fetch(
-          "http://localhost:1200/api/generateCertificate",
+          "https://bytexlpdfgenerator.onrender.com/api/generateCertificate",
           {
             method: "POST",
             headers: {
@@ -119,7 +118,7 @@ function App() {
     <ChakraProvider>
       <Box className="App" textAlign="center" p={8}>
         <Heading as="h1" size="xl" mb={4}>
-          Certificate Generator
+          Generate byteXL certificate here...
         </Heading>
         <Box mb={4}>
           <InputGroup>
