@@ -36,7 +36,7 @@ function App() {
     if (obj.name !== "" || obj.course !== "" ||obj.type!=="" || obj.linkedin !== "") {
       try {
         const response = await fetch(
-          "https://bytexlpdf.onrender.com/api/generateCertificate",
+          "http://localhost:1200/api/generateCertificate",
           {
             method: "POST",
             headers: {

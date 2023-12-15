@@ -189,21 +189,21 @@ app.post("/api/generateCertificate", async (req, res) => {
           &#8277;
         </div>
         <div class="name">${name}</div>
-        <div class="underline"></div>
+        
         <div class="assessment-text">
           has successfully cleared the assessment for the skill
         </div>
         <div class="programming-language">${course}</div>
         <div class="footer">
             <div>
-                <div class="underline1"><strong class="date">${new Date().toLocaleDateString(
+                <div><strong class="date">${new Date().toLocaleDateString(
                   "en-US",
                   { day: "numeric", month: "short", year: "numeric" }
                 )}</strong></div>
                 <h4>Date of Achievement</h4>
             </div>
           <div>
-            <div class="underline1">Karun Tadepalli</div>
+            <div>Karun Tadepalli</div>
             <h4>CEO & Co-founder</h4>
           </div>
         </div>
