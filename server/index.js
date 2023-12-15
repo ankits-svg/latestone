@@ -170,11 +170,23 @@ app.post("/api/generateCertificate", async (req, res) => {
       bottom: 10%;
         width: 170%;
     }
+    .footer h3, .footer h4 {
+      margin-bottom: -15px;
+    }
+    .bet-1{
+      position:relative;
+      padding-top:5%;
+      
+    }
+    .bet h3{
+     margin-top:-7%;
+      
+    }
   </style>
   <body>
     <div class="container">
       <div class="left-div">
-        <img class="image" src="https://ankit-123.my.canva.site/sa/images/d848d22c8df4e2d1fb90c190dcdcd2d8.png" alt="logo">
+        <img class="image" marginBottom="-10%" src="https://ankit-123.my.canva.site/sa/images/d848d22c8df4e2d1fb90c190dcdcd2d8.png" alt="logo">
       </div>
       <div class="right-div">
        
@@ -183,10 +195,9 @@ app.post("/api/generateCertificate", async (req, res) => {
         </h1>
         <div class="title">Certificate</div>
         
-        <div class="title1">OF ${type}</div>
+        <div class="title1">of ${type}</div>
         <div class="certify-text">
-          &#8277; &#8277; &#8277; This is to certify that &#8277; &#8277;
-          &#8277;
+          This is to certify that 
         </div>
         <div class="name">${name}</div>
         
@@ -195,15 +206,16 @@ app.post("/api/generateCertificate", async (req, res) => {
         </div>
         <div class="programming-language">${course}</div>
         <div class="footer">
-            <div>
-                <div><strong class="date">${new Date().toLocaleDateString(
+            <div class="bet-1">
+                <h3><strong class="date">${new Date().toLocaleDateString(
                   "en-US",
                   { day: "numeric", month: "short", year: "numeric" }
-                )}</strong></div>
+                )}</strong></h3>
                 <h4>Date of Achievement</h4>
             </div>
-          <div>
-            <div>Karun Tadepalli</div>
+          <div class="bet">
+              <img width="70%" src="https://ankit-123.my.canva.site/098/images/219f937dae02a117e97806b886894bfd.png" alt="sign"/>
+            <h3>Karun Tadepalli</h3>
             <h4>CEO & Co-founder</h4>
           </div>
         </div>
