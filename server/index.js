@@ -98,9 +98,16 @@ app.post("/pdf", async (req, res) => {
     .title1 {
       font-weight: bold;
       margin-top: -20px;
-      margin-left: 30%;
-      font-size: 24px;
+      
+      font-size: 44px;
       color: #F26E1C;
+    }
+    .title2 {
+      font-weight: bold;
+      margin-top: 5px;
+      
+      font-size: 54px;
+      color: #1DA1F2;
     }
     .certify-text {
       margin-top: 7%;
@@ -195,8 +202,8 @@ app.post("/pdf", async (req, res) => {
           <span class="byte">byte</span><sup class="xl">XL</sup>
         </h1>
         <div class="title">Certificate</div>
-        
-        <div class="title1">of ${type}</div>
+        <div class="title1">of</div>
+        <div class="title2">${type}</div>
         <div class="certify-text">
           This is to certify that 
         </div>
@@ -313,10 +320,15 @@ app.post("/image", async (req, res) => {
   }
   .title1 {
     font-weight: bold;
-    margin-top: -20px;
-    margin-left: 30%;
+    margin-top: 5px;
     font-size: 24px;
     color: #F26E1C;
+  }
+  .title2{
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 24px;
+    color: #1DA1F2;
   }
   .certify-text {
     margin-top: 8%;
@@ -325,7 +337,7 @@ app.post("/image", async (req, res) => {
   .name {
     font-size: 236%;
     color: #F26E1C;
-    margin-top: 8%;
+    margin-top: 5%;
     white-space: nowrap; /* Ensures the text stays in one line */
 }
   .assessment-text {
@@ -384,7 +396,8 @@ app.post("/image", async (req, res) => {
         <span class="byte">byte</span><sup class="xl">XL</sup>
       </h1>
       <div class="title">Certificate</div>
-      <div class="title1">of ${type}</div>
+      <div class="title1">of</div>
+      <div class="title2">${type}</div>
       <div class="certify-text">This is to certify that </div>
       <div class="name">${name}</div>
       <div class="assessment-text">has successfully cleared the assessment for the skill</div>
