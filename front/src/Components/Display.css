@@ -1,5 +1,5 @@
 .containerStyle {
-    border: 0.1rem solid red;
+    /* border: 0.1rem solid red; */
     width: 90rem;
     margin: auto;
     justify-content: space-between;
@@ -8,14 +8,14 @@
 }
 
 .leftDivStyle {
-    border: 0.1rem solid red;
+    border: 0.1rem solid gray;
     width: 60%;
     display:flex;
     flex-direction: row;
     
 }
 .template{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 40%;
     /* width: fit-content; */
     /* background-image: url("https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/291574948-3bd5cd5d-3ac1-4d23-a1cb-40482041c7fc.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231219T114025Z&X-Amz-Expires=300&X-Amz-Signature=89808a26e0dcc5bce9af22a0a15b0271746c98583ad5845f9f6f5c95c0e2698c&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745") !important;
@@ -27,7 +27,7 @@
 }
 
 .contentStyle {
-    border: 0.1rem solid blue;
+    /* border: 0.1rem solid blue; */
     width: 60%;
 }
 
@@ -42,64 +42,71 @@
 }
 
 .top-right {
-    position: absolute;
-    top: 0.1rem;
-    right: -0.5rem;
-    font-size: 2rem; /* Updated size for zoom responsiveness */
+    /* border: 1px solid red; */
+    position: relative;
+    text-align: end;
+    right: 1.5rem;
+    /* font-size: 12rem; */
+    /* display: flex; */
+    /* flex-direction: row; */
 }
 
 .title {
     font-weight: bold;
-    margin-top: 1.6rem;
-    font-size: 8rem; /* Updated size for zoom responsiveness */
+    margin-top: 1rem;
+    font-size: 4rem; /* Updated size for zoom responsiveness */
     color: #1DA1F2;
 }
 
 .title1 {
     font-weight: bold;
-    margin-top: 0.3rem;
-    font-size: 2.4rem; /* Updated size for zoom responsiveness */
+    /* margin-top: 0.3rem; */
+    font-size: 2rem; /* Updated size for zoom responsiveness */
     color: #F26E1C;
 }
 
 .title2 {
     font-weight: bold;
-    margin-top: 0.3rem;
-    font-size: 2.4rem; /* Updated size for zoom responsiveness */
+    /* margin-top: 0.3rem; */
+    font-size: 2rem; /* Updated size for zoom responsiveness */
     color: #1DA1F2;
 }
 
 .certify-text {
     margin-top: 0.5rem;
-    font-size: 1.8rem; /* Updated size for zoom responsiveness */
+    font-size: 1rem; /* Updated size for zoom responsiveness */
 }
 
 .name {
-    font-size: 25.6rem; /* Updated size for zoom responsiveness */
+    font-size: 2.6rem; /* Updated size for zoom responsiveness */
     color: #F26E1C;
-    margin-top: 0.3rem;
+    margin-top: 1.3rem;
     white-space: nowrap;
 }
 
 .assessment-text {
-    font-size: 2.1rem; /* Updated size for zoom responsiveness */
-    margin-top: 0.5rem;
+    font-size: 1rem; /* Updated size for zoom responsiveness */
+    margin-top: 1.5rem;
     color: black;
-    white-space: nowrap;
+    white-space: wrap;
+    font-style: italic;
+    font-weight: bold;
 }
 
 .programming-language {
+    font-style: italic;
     font-weight: bold;
-    margin-top: 1rem;
-    font-size: 2.1rem; /* Updated size for zoom responsiveness */
+    margin-top: 0.8rem;
+    font-size: 1.42rem; /* Updated size for zoom responsiveness */
     color: #F26E1C;
 }
 
 .footer {
+    /* border: 1px solid red; */
     display: flex;
     justify-content: space-around;
     margin-top: 4rem;
-    font-size: 1.4rem; /* Updated size for zoom responsiveness */
+    font-size: 1rem; /* Updated size for zoom responsiveness */
 }
 
 .byte {
@@ -119,7 +126,7 @@ h4 {
 
 .image {
     height: 100%;
-    min-width: 80%;
+    min-width: 40%;
     position: relative;
 }
 
@@ -130,7 +137,7 @@ h4 {
 
 .bet-1 {
     position: relative;
-    padding-top: 0.28rem;
+    padding-top: 1.4rem;
 }
 
 .bet h3 {
@@ -139,7 +146,7 @@ h4 {
 
 
 .rightDivStyle {
-    border: 0.1rem solid black;
+    /* border: 0.1rem solid black; */
     flex: 0 0 30%;
     padding: 1.25rem;
     display: flex;
