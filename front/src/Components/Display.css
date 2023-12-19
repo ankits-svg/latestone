@@ -1,0 +1,40 @@
+.containerStyle {
+    border: 0.1rem solid red;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+
+.leftDivStyle {
+    border: 0.1rem solid red;
+    flex: 0 0 60%;
+    padding: 1.25rem;
+    position: relative;
+    background-image: url("https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/291570220-3d911de0-9504-4b3c-b3fa-96f50f846625.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231219T111933Z&X-Amz-Expires=300&X-Amz-Signature=433d25b78b1916dc277e388c8747864cd3c4a6daca705c0ef30dd7c53d117f31&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745");
+    background-size: cover;
+    color: white;
+}
+
+.contentStyle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+}
+
+.rightDivStyle {
+    border: 0.1rem solid black;
+    flex: 0 0 30%;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.copyButtonStyle {
+    margin-left: 0.625rem;
+}
