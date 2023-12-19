@@ -6,19 +6,31 @@ const DisplayPage = () => {
     <div className="containerStyle">
       <div className="leftDivStyle">
         <div className="template">
-            <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/291574948-3bd5cd5d-3ac1-4d23-a1cb-40482041c7fc.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231219T114025Z&X-Amz-Expires=300&X-Amz-Signature=89808a26e0dcc5bce9af22a0a15b0271746c98583ad5845f9f6f5c95c0e2698c&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745" alt="temp" />
+          <img src="https://i.ibb.co/pPL1QB3/leftdiv.png" alt="temp" />
         </div>
 
         <div className="contentStyle">
-          <div>
-          <h1>Your Content Here</h1>
-          <p>Additional text or components can go here.</p>
+            <h1 class="top-right">
+                <span class="byte">byte</span><sup class="xl">XL</sup>
+            </h1>
+          <div className="title">Certificate</div>
+          <div className="box2">of</div>
+          <div className="box3">Participation</div>
+          <div className="box4">This is to certify that</div>
+          <div className="box5">Ankit Sharma</div>
+          <div className="box6">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit eum
+            necessitatibus officia cum reprehenderit delectus, rerum, molestias
+            veniam voluptatum quis nostrum deleniti! Perferendis?
+          </div>
+          <div className="box7">Python Programming</div>
+          <div className="footer">
+            <div className="l">Date</div>
+            <div className="r">Karun</div>
           </div>
         </div>
       </div>
-      
-      
-      
+
       <div className="rightDivStyle">
         <h1>Right Div (30%)</h1>
         <div>

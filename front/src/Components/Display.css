@@ -1,6 +1,6 @@
 .containerStyle {
     border: 0.1rem solid red;
-    width: 90%;
+    width: 90rem;
     margin: auto;
     justify-content: space-between;
     display: flex;
@@ -9,7 +9,7 @@
 
 .leftDivStyle {
     border: 0.1rem solid red;
-    width: 100%;
+    width: 60%;
     display:flex;
     flex-direction: row;
     
@@ -17,25 +17,126 @@
 .template{
     border: 1px solid black;
     width: 40%;
-    width: fit-content;
+    /* width: fit-content; */
     /* background-image: url("https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/291574948-3bd5cd5d-3ac1-4d23-a1cb-40482041c7fc.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231219T114025Z&X-Amz-Expires=300&X-Amz-Signature=89808a26e0dcc5bce9af22a0a15b0271746c98583ad5845f9f6f5c95c0e2698c&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745") !important;
     background-size: cover; */
 }
-.template img{
-    width: fit-content;
+.template>img{
+    width: 100%;
+
 }
 
 .contentStyle {
-    border: 1px solid blue;
-    width:60%;
-    
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1; */
+    border: 0.1rem solid blue;
+    width: 60%;
 }
+
+.right-div {
+    flex: 1;
+    position: relative;
+    right: 3%;
+    background-color: #FFFFFF;
+    padding: 1.7rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.top-right {
+    position: absolute;
+    top: 0.1rem;
+    right: -0.5rem;
+    font-size: 2rem; /* Updated size for zoom responsiveness */
+}
+
+.title {
+    font-weight: bold;
+    margin-top: 1.6rem;
+    font-size: 8rem; /* Updated size for zoom responsiveness */
+    color: #1DA1F2;
+}
+
+.title1 {
+    font-weight: bold;
+    margin-top: 0.3rem;
+    font-size: 2.4rem; /* Updated size for zoom responsiveness */
+    color: #F26E1C;
+}
+
+.title2 {
+    font-weight: bold;
+    margin-top: 0.3rem;
+    font-size: 2.4rem; /* Updated size for zoom responsiveness */
+    color: #1DA1F2;
+}
+
+.certify-text {
+    margin-top: 0.5rem;
+    font-size: 1.8rem; /* Updated size for zoom responsiveness */
+}
+
+.name {
+    font-size: 25.6rem; /* Updated size for zoom responsiveness */
+    color: #F26E1C;
+    margin-top: 0.3rem;
+    white-space: nowrap;
+}
+
+.assessment-text {
+    font-size: 2.1rem; /* Updated size for zoom responsiveness */
+    margin-top: 0.5rem;
+    color: black;
+    white-space: nowrap;
+}
+
+.programming-language {
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 2.1rem; /* Updated size for zoom responsiveness */
+    color: #F26E1C;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4rem;
+    font-size: 1.4rem; /* Updated size for zoom responsiveness */
+}
+
+.byte {
+    color: #1DA1F2;
+    font-size: 2.8rem; /* Updated size for zoom responsiveness */
+}
+
+.xl {
+    color: #F26E1C;
+    font-size: 2.1rem; /* Updated size for zoom responsiveness */
+    margin-top: -1rem;
+}
+
+h4 {
+    color: #F26E1C;
+}
+
+.image {
+    height: 100%;
+    min-width: 80%;
+    position: relative;
+}
+
+.footer h3,
+.footer h4 {
+    margin-bottom: -1.5rem; /* Updated margin for zoom responsiveness */
+}
+
+.bet-1 {
+    position: relative;
+    padding-top: 0.28rem;
+}
+
+.bet h3 {
+    margin-top: -0.7rem;
+}
+
 
 .rightDivStyle {
     border: 0.1rem solid black;
@@ -49,3 +150,13 @@
 .copyButtonStyle {
     margin-left: 0.625rem;
 }
+.right-div {
+    flex: 1;
+    position: relative;
+    right:3%;
+
+    background-color: #FFFFFF;
+    padding: 17px;
+    box-sizing: border-box;
+    text-align: center;
+  }
