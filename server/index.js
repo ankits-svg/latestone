@@ -7,10 +7,15 @@ const htmlToPdf = require("html-pdf-node");
 const { HtmlModel } = require("./models/html.models");
 const puppeteer = require("puppeteer");
 require("dotenv").config();
+const querystring = require('querystring');
+const { RankModel } = require("./models/hacker.models");
+// const BitlyClient = require('bitly').BitlyClient;
+
 port = process.env.port || 2200;
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use(cors());
 app.use(express.json());
+// app.use('',encodeURI())
 
 app.get("/:id", async (req, res) => {
   console.log("req", req.params);
@@ -308,36 +313,36 @@ app.post("/image", async (req, res) => {
   h1.top-right {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: -5%;
     font-size: 20px;
   }
   .title {
     font-weight: bold;
-    margin-top: 20%;
+    margin-top: 16%;
     font-size: 80px; /* Original size: 70px */
     color: #1DA1F2;
     /* font-family: "Beau Rivage", cursive; */
   }
   .title1 {
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 3px;
     font-size: 24px;
     color: #F26E1C;
   }
   .title2{
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 3px;
     font-size: 24px;
     color: #1DA1F2;
   }
   .certify-text {
-    margin-top: 8%;
+    margin-top: 5%;
     font-size: 18px; /* Original size: 28px */
   }
   .name {
-    font-size: 236%;
+    font-size: 256%;
     color: #F26E1C;
-    margin-top: 5%;
+    margin-top: 3%;
     white-space: nowrap; /* Ensures the text stays in one line */
 }
   .assessment-text {
@@ -428,6 +433,213 @@ app.post("/image", async (req, res) => {
   res.send({ imageUrl: `data:image/png;base64,${screenshot}` });
 
   await browser.close();
+});
+
+//for image
+// app.post("/short", async (req, res) => {
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
+//   const {name,type,course,linkedin}=req.body;
+
+
+//   const content = `
+//   <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8" />
+//   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+//   <title>byteXL</title>
+//   <!-- <link rel="preconnect" href="https://fonts.googleapis.com" /> -->
+//   <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+//   <!-- <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Carattere&family=Cedarville+Cursive&family=Dancing+Script:wght@400;700&family=Marck+Script&family=Tangerine:wght@700&display=swap" rel="stylesheet" /> -->
+// </head>
+// <style>
+//   body {
+//     margin: 0;
+//     padding: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+//   }
+//   .container {
+    
+//     display: flex;
+//     width: 216mm;
+//     max-width: 100%;
+//     max-height: 140%;
+//   }
+//   .left-div {
+//     height:250%;
+//     width: 65%;
+//     position: relative;
+//     overflow:hidden;
+//   }
+//   .right-div {
+//     flex: 1;
+//     position: relative;
+//     right:3%;
+
+//     background-color: #FFFFFF;
+//     padding: 17px;
+//     box-sizing: border-box;
+//     text-align: center;
+//   }
+//   h1.top-right {
+//     position: absolute;
+//     top: 10px;
+//     right: -5%;
+//     font-size: 20px;
+//   }
+//   .title {
+//     font-weight: bold;
+//     margin-top: 16%;
+//     font-size: 80px; /* Original size: 70px */
+//     color: #1DA1F2;
+//     /* font-family: "Beau Rivage", cursive; */
+//   }
+//   .title1 {
+//     font-weight: bold;
+//     margin-top: 3px;
+//     font-size: 24px;
+//     color: #F26E1C;
+//   }
+//   .title2{
+//     font-weight: bold;
+//     margin-top: 3px;
+//     font-size: 24px;
+//     color: #1DA1F2;
+//   }
+//   .certify-text {
+//     margin-top: 5%;
+//     font-size: 18px; /* Original size: 28px */
+//   }
+//   .name {
+//     font-size: 256%;
+//     color: #F26E1C;
+//     margin-top: 3%;
+//     white-space: nowrap; /* Ensures the text stays in one line */
+// }
+//   .assessment-text {
+//     font-size: 21px; /* Original size: 30px */
+//     margin-top: 5%;
+//     color: black;
+//     white-space: nowrap;
+//   }
+//   .programming-language {
+//     font-weight: bold;
+//     margin-top: 10px;
+//     font-size: 21px; /* Original size: 44px */
+//     color: #F26E1C;
+//   }
+//   .footer {
+//     display: flex;
+//     justify-content: space-around;
+//     margin-top: 40px;
+//     font-size: 14px;
+//   }
+//   .byte {
+//     color: #1DA1F2;
+//     font-size: 28px; /* Original size: 40px */
+//   }
+//   .xl {
+//     color: #F26E1C;
+//     font-size: 21px; /* Original size: 30px */
+//     margin-top: -10px;
+//   }
+//   h4 {
+//     color: #F26E1C;
+//   }
+//   .image {
+//     height: 100%;
+//     min-width:80%;
+//     position: relative;
+//   }
+//   .footer h3, .footer h4 {
+//     margin-bottom: -15px;
+//   }
+//   .bet-1 {
+//     position: relative;
+//     padding-top: 2.8%;
+//   }
+//   .bet h3 {
+//     margin-top: -7%;
+//   }
+// </style>
+// <body>
+//   <div class="container">
+//     <div class="left-div">
+//       <img class="image" src="https://ankit-123.my.canva.site/sa/images/d848d22c8df4e2d1fb90c190dcdcd2d8.png" alt="logo">
+//     </div>
+//     <div class="right-div">
+//       <h1 class="top-right">
+//         <span class="byte">byte</span><sup class="xl">XL</sup>
+//       </h1>
+//       <div class="title">Certificate</div>
+//       <div class="title1">of</div>
+//       <div class="title2">${type}</div>
+//       <div class="certify-text">This is to certify that </div>
+//       <div class="name">${name}</div>
+//       <div class="assessment-text">has successfully cleared the assessment for the skill</div>
+//       <div class="programming-language">${course}</div>
+//       <div class="footer">
+//         <div class="bet-1">
+//           <h3><strong class="date">${new Date().toLocaleDateString(
+//             "en-US",
+//             { day: "numeric", month: "short", year: "numeric" }
+//           )}</strong></h3>
+//           <h4>Date of Achievement</h4>
+//         </div>
+//         <div class="bet">
+//           <img width="40%" src="https://ankit-123.my.canva.site/098/images/219f937dae02a117e97806b886894bfd.png" alt="sign"/>
+//           <h3>Karun Tadepalli</h3>
+//           <h4>CEO & Co-founder</h4>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </body>
+// </html>
+//   `;
+
+//   await page.setContent(content);
+//   const screenshot = await page.screenshot({ encoding: "base64" });
+//   const originalUrl = `data:image/png;base64,${screenshot}`;
+//   const encodedUrl = querystring.escape(originalUrl);
+
+//   // console.log(encodedUrl);
+//   // res.send({ imageUrl: screenshot });
+//   res.send({ imageUrl: encodedUrl });
+
+//   await browser.close();
+// });
+
+app.post("/save",async(req,res)=>{
+  const {name,course,type,linkedin}=req.body;
+  try {
+    const rank=new RankModel({name:name,course:course,type:type,linkedin})
+    await rank.save()
+    res.status(200).send({"msg":"save data successfully","data":rank})
+  } catch (error) {
+    res.status(400).send({"msg":"some error occurred"})
+  }
+})
+app.get("/get/:id", async (req, res) => {
+  // console.log(req.params)
+  const id = req.params.id;
+
+  try {
+    // Use findById to fetch data based on the ID
+    const rank = await RankModel.findById(id);
+
+    if (rank) {
+      res.status(200).send({ "msg": "Getting data successfully", "data": rank });
+    } else {
+      res.status(404).send({ "msg": "Data not found" });
+    }
+  } catch (error) {
+    res.status(400).send({ "msg": "Some error occurred in getting data" });
+  }
 });
 
 app.listen(port, async () => {
