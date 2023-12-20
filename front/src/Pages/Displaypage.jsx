@@ -31,11 +31,13 @@ const DisplayPage = () => {
   const { id } = useParams();
   const [url,setUrl]=useState(`http://localhost:1200/get/${id}`)
   const inputRef = useRef(null);
-  const leftDivRef = useRef(null);
+  // const leftDivRef = useRef(null);
   const currentUrl = window.location.href;
   const [body,setBody]=useState("")
   const [topic,setTopic]=useState("")
   const navigate=useNavigate()
+  const [image,setImage]=useState("")
+  const [encode,setEncode]=useState("")
   // console.log("currentUrl:",currentUrl)
   // console.log("id:",id);
 
@@ -65,46 +67,82 @@ const DisplayPage = () => {
     }
   }
 
-  const openShareModal = () => {
-    // Implement your modal logic here
-    alert("Modal for sharing options will be implemented here");
+  
+  
+
+  const handleTwitter=()=>{
+    window.open("https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A3000%2Fdisplay%2F"+id)
+  }
+
+  const handleLinkedin = async () => {
+    try {
+      // Assuming inputRef.current.files[0] is the selected image file
+      const imageFile = inputRef.current.files[0];
+
+      // Upload the image and get the URL
+      const imageUrl = await uploadImage(imageFile);
+
+      // Set the encoded URL state
+      setEncode(encodeURIComponent(imageUrl));
+
+      // Open the LinkedIn share dialog in a new tab
+      window.open(
+        `https://www.linkedin.com/sharing/share-offsite/?url=${encode}`,
+        "_blank"
+      );
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
-  useEffect(() => {
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-      if (leftDivRef.current && leftDivRef.current.contains(e.target)) {
-        // Simulate the "Save Image As" option
-        const link = document.createElement("a");
-        link.href = "path/to/your/image.jpg";
-        link.download = "Certificate.jpg";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
 
-        // Simulate the "Copy Image" option
-        if (inputRef.current) {
-          inputRef.current.toBlob((blob) => {
-            const item = new ClipboardItem({ "image/png": blob });
-            navigator.clipboard.write([item]);
-          });
+  const uploadImage = async (file) => {
+    try {
+      // Simulate an image upload using axios or any other method
+      const formData = new FormData();
+      formData.append("file", file);
+
+      // Replace the URL with your actual image upload endpoint
+      const response = await fetch("http://localhost:1200/upload",{
+        method:"POST",
+        body:JSON.stringify(formData),
+        headers:{
+          "Content-Type":"application/json"
         }
+      });
 
-        // Simulate the "Browser Details" option
-        console.log(navigator.userAgent);
+      // Assuming the response contains the URL of the uploaded image
+      return response.data.imageUrl;
+    } catch (error) {
+      console.error("Image upload error:", error);
+      throw error;
+    }
+  };
 
-        // Simulate the "Inspect" option
-        // You may want to replace this with your own logic
-        alert("Inspecting the div");
-      }
-      
-    };
+  const handleDownload = () => {
+    fetch(`http://localhost:1200/image/${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log("res:",res.imageUrl)
+        setImage(res.imageUrl)
 
-    document.addEventListener("contextmenu", handleContextMenu);
-
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-    };
-  }, [leftDivRef]);
+        if (image) {
+          // Create a temporary link element
+          const link = document.createElement("a");
+          link.href = image;
+          link.download = "Certificate.png";
+          document.body.appendChild(link);
+    
+          // Trigger the click event to start the download
+          link.click();
+    
+          // Remove the link from the document
+          document.body.removeChild(link);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 
   return (
@@ -114,7 +152,7 @@ const DisplayPage = () => {
     }}>Back</button>
     <div className="containerStyle">
       
-      <div className="leftDivStyle" ref={inputRef} >
+      <div className="leftDivStyle" >
         <div className="template">
           <img src="https://i.ibb.co/pPL1QB3/leftdiv.png" alt="temp" />
           {/* <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/291668301-8abfda8d-ca09-45a2-a139-fbf561592c9a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231219T173634Z&X-Amz-Expires=300&X-Amz-Signature=95468014ee86865509ea8a3cb411b09ae89a830dc326601faf662ecdd31681d6&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745" alt="alt" /> */}
@@ -161,21 +199,23 @@ const DisplayPage = () => {
         </div>
       </div>
 
-      <div className="rightDivStyle" onContextMenu={(e) => e.preventDefault()}>
+      <div className="rightDivStyle">
         {/* <h1>Right Div (30%)</h1> */}
         <div>
           <h2>Share this Certificate</h2>
         </div>
-        <div>
+        <div className="social">
           {/* Icons for Twitter and LinkedIn */}
-          <span>
-              <button>Twitter</button>
-            </span>
-            <span>
-              <button>Linkedin</button>
-            </span>
+          <div onClick={handleTwitter}><img width={'80%'} src="https://hrcdn.net/fcore/assets/social_share/twitter-96e2c898ae.svg" alt="linkedin" /></div>
+          <div onClick={handleLinkedin}><img width={'80%'} src="https://hrcdn.net/fcore/assets/social_share/linkedin-fd4be6309a.svg" alt="linkedin" /></div>
+          
+              {/* <button>Twitter</button> */}
+           
+              
+              {/* <button>Linkedin</button> */}
+           
             {/* You can replace the alert with actual sharing logic */}
-            <button onClick={openShareModal}>More Options</button>
+            {/* <button onClick={openShareModal}>More Options</button> */}
           {/* You can add the icons here */}
         </div>
         <div className="copyButtonStyle">
@@ -189,7 +229,7 @@ const DisplayPage = () => {
           <button onClick={handleCopyClick}>Copy</button>
         </div>
         <div>
-          <button style={{ padding: "0.3125rem" }}>Download</button>
+          <button style={{ padding: "0.3125rem" }} onClick={handleDownload}>Download</button>
         </div>
         <div>
           <h3>{topic}</h3>
