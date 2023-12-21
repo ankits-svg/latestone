@@ -71,14 +71,14 @@ const DisplayPage = () => {
   
 
   const handleTwitter=()=>{
-    window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Fbytexlnew.netlify.app%2Fdisplay%2F"+id)
+    window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Ffront-g1rghek3f-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F"+id)
   }
 
   const handleLinkedin = () => {
     console.log("ankit")
     
       window.open(
-        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbytexlnew.netlify.app%2Fdisplay%2F`+id,
+        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ffront-g1rghek3f-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F`+id,
         "_blank"
       );
     
@@ -87,12 +87,12 @@ const DisplayPage = () => {
 
 
   const handleDownload = () => {
-    fetch(`https://serverbyte.onrender.com/image/${id}`)
+    fetch(`https://localhost:1200/image/658276927f947b975a21ecd2`)
       .then((res) => res.json())
       .then((res) => {
         // console.log("res:",res.imageUrl)
         setImage(res.imageUrl)
-
+        alert('Downloading starts')
         if (image) {
           // Create a temporary link element
           const link = document.createElement("a");
