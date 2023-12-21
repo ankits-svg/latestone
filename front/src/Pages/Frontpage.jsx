@@ -40,7 +40,7 @@ const Frontpage = () => {
       name:name,type:type,course:course,linkedin:linkedin
     }
     // console.log("obj:",obj)
-    fetch("http://localhost:1200/save",{
+    fetch("https://serverbyte.onrender.com/save",{
       method:"POST",
       body:JSON.stringify(obj),
       headers:{

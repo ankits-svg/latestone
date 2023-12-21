@@ -25,11 +25,11 @@ let topicsData = [
   { topic: "CI/CD (Continuous Integration/Continuous Deployment)", body: "automated testing, deployment pipelines" },
 ];
 
-
+// https://serverbyte.onrender.com/save
 const DisplayPage = () => {
   const [data, setData] = useState({});
   const { id } = useParams();
-  const [url,setUrl]=useState(`http://localhost:1200/get/${id}`)
+  const [url,setUrl]=useState(`https://serverbyte.onrender.com/get/${id}`)
   const inputRef = useRef(null);
   // const leftDivRef = useRef(null);
   const currentUrl = window.location.href;
@@ -71,7 +71,7 @@ const DisplayPage = () => {
   
 
   const handleTwitter=()=>{
-    window.open("https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A3000%2Fdisplay%2F"+id)
+    window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Fbytexlnew.netlify.app%2F"+id)
   }
 
   const handleLinkedin = async () => {
@@ -87,7 +87,7 @@ const DisplayPage = () => {
 
       // Open the LinkedIn share dialog in a new tab
       window.open(
-        `https://www.linkedin.com/sharing/share-offsite/?url=${encode}`,
+        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbytexlnew.netlify.app%2F`+id,
         "_blank"
       );
     } catch (error) {
@@ -102,7 +102,7 @@ const DisplayPage = () => {
       formData.append("file", file);
 
       // Replace the URL with your actual image upload endpoint
-      const response = await fetch("http://localhost:1200/upload",{
+      const response = await fetch("https://serverbyte.onrender.com/upload",{
         method:"POST",
         body:JSON.stringify(formData),
         headers:{
@@ -119,7 +119,7 @@ const DisplayPage = () => {
   };
 
   const handleDownload = () => {
-    fetch(`http://localhost:1200/image/${id}`)
+    fetch(`https://serverbyte.onrender.com/image/${id}`)
       .then((res) => res.json())
       .then((res) => {
         // console.log("res:",res.imageUrl)
