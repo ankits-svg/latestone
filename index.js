@@ -7,7 +7,7 @@ const htmlToPdf = require("html-pdf-node");
 const { HtmlModel } = require("./models/html.models");
 const puppeteer = require("puppeteer");
 require("dotenv").config();
-const querystring = require('querystring');
+// const querystring = require('querystring');
 const { RankModel } = require("./models/hacker.models");
 const multer = require("multer");
 const path = require("path");
@@ -452,28 +452,7 @@ app.post("/save",async(req,res)=>{
     res.status(400).send({"msg":"some error occurred"})
   }
 })
-// Set up Multer to handle file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "uploads"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
 
-const upload = multer({ storage: storage });
-
-app.post("/upload", upload.single("file"), (req, res) => {
-  try {
-    // Assuming the uploaded file is accessible via req.file
-    const imageUrl = `http://localhost:${port}/uploads/${req.file.filename}`;
-    res.json({ imageUrl });
-  } catch (error) {
-    console.error("Image upload error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
 
 app.get("/get/:id", async (req, res) => {
   // console.log(req.params)
