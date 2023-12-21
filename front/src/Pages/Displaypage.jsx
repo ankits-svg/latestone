@@ -78,7 +78,7 @@ const DisplayPage = () => {
     console.log("ankit")
     
       window.open(
-        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ffront-g1rghek3f-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F`+id,
+        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ffront-g1rghek3f-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F%0A`+id,
         "_blank"
       );
     
