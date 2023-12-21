@@ -74,49 +74,17 @@ const DisplayPage = () => {
     window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Fbytexlnew.netlify.app%2F"+id)
   }
 
-  const handleLinkedin = async () => {
-    try {
-      // Assuming inputRef.current.files[0] is the selected image file
-      const imageFile = inputRef.current.files[0];
-
-      // Upload the image and get the URL
-      const imageUrl = await uploadImage(imageFile);
-
-      // Set the encoded URL state
-      setEncode(encodeURIComponent(imageUrl));
-
-      // Open the LinkedIn share dialog in a new tab
+  const handleLinkedin = () => {
+    console.log("ankit")
+    
       window.open(
         `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbytexlnew.netlify.app%2F`+id,
         "_blank"
       );
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    
   };
 
-  const uploadImage = async (file) => {
-    try {
-      // Simulate an image upload using axios or any other method
-      const formData = new FormData();
-      formData.append("file", file);
 
-      // Replace the URL with your actual image upload endpoint
-      const response = await fetch("https://serverbyte.onrender.com/upload",{
-        method:"POST",
-        body:JSON.stringify(formData),
-        headers:{
-          "Content-Type":"application/json"
-        }
-      });
-
-      // Assuming the response contains the URL of the uploaded image
-      return response.data.imageUrl;
-    } catch (error) {
-      console.error("Image upload error:", error);
-      throw error;
-    }
-  };
 
   const handleDownload = () => {
     fetch(`https://serverbyte.onrender.com/image/${id}`)
@@ -206,8 +174,8 @@ const DisplayPage = () => {
         </div>
         <div className="social">
           {/* Icons for Twitter and LinkedIn */}
-          <div onClick={handleTwitter}><img width={'80%'} src="https://hrcdn.net/fcore/assets/social_share/twitter-96e2c898ae.svg" alt="linkedin" /></div>
-          <div onClick={handleLinkedin}><img width={'80%'} src="https://hrcdn.net/fcore/assets/social_share/linkedin-fd4be6309a.svg" alt="linkedin" /></div>
+          <div onClick={()=>handleTwitter()}><img width={'80%'} src="https://hrcdn.net/fcore/assets/social_share/twitter-96e2c898ae.svg" alt="linkedin" /></div>
+          <div onClick={()=>handleLinkedin()}><img width={'80%'} src="https://hrcdn.net/fcore/assets/social_share/linkedin-fd4be6309a.svg" alt="linkedin" /></div>
           
               {/* <button>Twitter</button> */}
            
