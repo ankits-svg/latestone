@@ -1,6 +1,6 @@
 .containerStyle {
     /* border: 0.1rem solid red; */
-    width: 70rem;
+    width: 76rem;
     margin: auto;
     margin-top: 2rem;
     justify-content: space-between;
@@ -10,7 +10,7 @@
 
 .leftDivStyle {
     border: 0.1rem solid gray;
-    width: 60%;
+    width: auto;
     display:flex;
     flex-direction: row;
     
@@ -74,7 +74,7 @@
 }
 
 .certify-text {
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
     font-size: 1rem; /* Updated size for zoom responsiveness */
 }
 
@@ -97,7 +97,7 @@
 .programming-language {
     font-style: italic;
     font-weight: bold;
-    margin-top: 0.8rem;
+    margin-top: 0.2rem;
     font-size: 1.42rem; /* Updated size for zoom responsiveness */
     color: #F26E1C;
 }
@@ -106,7 +106,7 @@
     /* border: 1px solid red; */
     display: flex;
     justify-content: space-around;
-    margin-top: 4rem;
+    margin-top: 2rem;
     font-size: 1rem; /* Updated size for zoom responsiveness */
 }
 
@@ -130,6 +130,10 @@ h4 {
     min-width: 40%;
     position: relative;
 }
+/* .footer{
+    border: 1px solid red;
+    margin-top: -0rem;
+} */
 
 .footer h3,
 .footer h4 {
