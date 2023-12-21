@@ -17,6 +17,7 @@ import "./App.css";
 import { FaTwitter, FaLinkedin } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 
+
 function App() {
   const [name, setName] = useState("");
   const [course, setCourse] = useState("");
@@ -26,6 +27,7 @@ function App() {
   const [copy, setCopy] = useState("");
   const [image, setImage] = useState(null);
   const [toggle, setToggle] = useState(false);
+  // const [selectedFile, setSelectedFile] = useState(null);
 
   function capitalizeFirstLetter(string) {
     return string
@@ -42,7 +44,7 @@ function App() {
       type: capitalizeFirstLetter(type),
       linkedin: linkedin,
     };
-    // localStorage.setItem("details", JSON.stringify(obj));
+    
     if (
       obj.name !== "" ||
       obj.course !== "" ||
@@ -64,17 +66,12 @@ function App() {
         });
 
         const pdfBuffer = await response.arrayBuffer();
-        // console.log("pdfBuffer:",pdfBuffer)
         const blob = new Blob([pdfBuffer], { type: "application/pdf" });
-        // console.log("blob:",blob)
         const url = URL.createObjectURL(blob);
-        // console.log("url:",url)
-        // localStorage.setItem('url',JSON.stringify(url))
         setPdfUrl(url);
         setName("");
         setCourse("");
         setType("");
-        // setlinkedin("")
       } catch (error) {
         console.error("Error generating certificate:", error);
       }
@@ -83,9 +80,18 @@ function App() {
     }
   };
 
-  const handleCopy = () => {
+  const handleCopypdf = () => {
     const urlInput = document.getElementById("pdfUrlInput");
-    console.log("urlInput:", urlInput.value);
+    // console.log("urlInput:", urlInput.value);
+    if (urlInput) {
+      urlInput.select();
+      document.execCommand("copy");
+      setCopy("Copied!");
+    }
+  };
+  const handleCopyimage = () => {
+    const urlInput = document.getElementById("imageUrlInput");
+    // console.log("urlInput:", urlInput.value);
     if (urlInput) {
       urlInput.select();
       document.execCommand("copy");
@@ -120,15 +126,41 @@ function App() {
         .then((res) => {
           // console.log(res.imageUrl)
           setImage(res.imageUrl);
-          setName("");
-          setType("");
-          setCourse("");
+          // setName("");
+          // setType("");
+          // setCourse("");
         })
         .catch((err) => {
           console.log(err);
         });
     }
   };
+
+  // const handleFileChange = (e) => {
+  //   setSelectedFile(e.target.files[0]);
+  // };
+
+  // const handleUpload = () => {
+   
+  //     const formData = new FormData();
+  //     formData.append('file', selectedFile);
+
+  //     // Replace 'https://example.com/upload' with your actual endpoint
+  //     fetch('https://example.com/upload',{
+  //     method:"POST",
+  //     body:JSON.stringify(formData),  
+  //     headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     }).then(res=>res.json()).then(res=>{
+  //       console.log('File uploaded successfully:', res);
+      
+  //     }).catch(err=>{
+  //       console.log(err)
+  //     });
+
+  // };
+
   const isDisabled = !name || !course || !type || !linkedin;
 
   const downloadCertificate = () => {
@@ -189,27 +221,7 @@ function App() {
             />
           </InputGroup>
         </Box>
-        {/* {toggle === true ? (
-          <Button
-            colorScheme="teal"
-            size="md"
-            mb={4}
-            onClick={generateCertificatepdf}
-            isDisabled={isDisabled}
-          >
-            Generate Certificate in pdf
-          </Button>
-        ) : (
-          <Button
-            colorScheme="teal"
-            size="md"
-            mb={4}
-            onClick={generateCertificateimage}
-            isDisabled={isDisabled}
-          >
-            Generate Certificate in Image
-          </Button>
-        )} */}
+        
         <Button
           colorScheme="teal"
           size="md"
@@ -219,7 +231,7 @@ function App() {
         >
           Generate Certificate
         </Button>
-        <Box>
+        {/* <Box>
           <Button
             onClick={() => {
               setToggle(!toggle);
@@ -227,7 +239,7 @@ function App() {
           >
             Toggle
           </Button>
-        </Box>
+        </Box> */}
         {toggle === true ? (
           <>
             {pdfUrl ? (
@@ -274,7 +286,7 @@ function App() {
                         <Button
                           h="1.75rem"
                           size="sm"
-                          onClick={handleCopy}
+                          onClick={handleCopypdf}
                           colorScheme="teal"
                         >
                           {copy ? "Copied!" : "Copy"}
@@ -350,7 +362,7 @@ function App() {
                   <Box>
                     <InputGroup>
                       <Input
-                        id="pdfUrlInput"
+                        id="imageUrlInput"
                         type="url"
                         value={image}
                         readOnly
@@ -363,7 +375,7 @@ function App() {
                         <Button
                           h="1.75rem"
                           size="sm"
-                          onClick={handleCopy}
+                          onClick={handleCopyimage}
                           colorScheme="teal"
                         >
                           {copy ? "Copied!" : "Copy"}
@@ -403,6 +415,22 @@ function App() {
                       }
                       borderRadius="full"
                     />
+                    <IconButton
+                      colorScheme="linkedin"
+                      size="md"
+                      aria-label="Share on LinkedIn"
+                      icon={<FaLinkedin />}
+                      onClick={() =>
+                        window.open(
+                          `https://www.linkedin.com/in/${linkedin}/edit/forms/certification/new/?profileFormEntryPoint=PROFILE_COMPLETION_HUB`
+                        )
+                      }
+                      borderRadius="full"
+                    />
+                    {/* <Input type="file" onChange={handleFileChange} />
+                    <Button onClick={handleUpload} disabled={!selectedFile}>
+                      Upload
+                    </Button> */}
                   </Box>
                   <Box mt={'20px'}>
                   <Button leftIcon={<MdDownload />} colorScheme='pink' variant='solid' onClick={downloadCertificate}>
@@ -416,98 +444,7 @@ function App() {
             )}
           </>
         )}
-        {/* {image ? (
-        <Box border={'1px solid gray'}  w={'60%'}>
-          <Image src={image} alt="Generated Certificate" style={{ width: '90%' }} />
-        </Box>
-      ) : (
-        <p>Loading...</p>
-      )} */}
-
-        {/* {pdfUrl && (
-          <Box
-            display="flex"
-            flexDirection={{ base: "column", md: "row" }}
-            justifyContent="space-around"
-            w="100%"
-            mb={4}
-          >
-            <Box flex="1" pr={{ base: 0, md: 4 }}>
-              <iframe
-                title="Generated Certificate"
-                src={pdfUrl}
-                frameBorder="0"
-                style={{
-                  border: "2px solid gray",
-                  width: "100%",
-                  height: "494px",
-                  margin: "auto",
-                  marginTop: "20px",
-                  borderRadius: "20px", // Add the desired border radius value
-                }}
-              ></iframe>
-            </Box>
-            
-            <Box flex="0 0 30%" pl={{ base: 0, md: 4 }} m={"20px"}>
-              <Heading as="h2" size="lg" mb={4}>
-                Generated Certificate URL:
-              </Heading>
-              <Box>
-                <InputGroup>
-                  <Input
-                    id="pdfUrlInput"
-                    type="url"
-                    value={pdfUrl}
-                    readOnly
-                    onClick={(e) => e.target.select()}
-                    pr="1rem"
-                    focusBorderColor="teal" // Set the focus border color to teal
-                    borderColor="teal" // Set the border color to teal
-                  />
-                  <InputRightElement width="4.5rem" pr="0">
-                    <Button h="1.75rem" size="sm" onClick={handleCopy} colorScheme="teal">
-                      {copy ? "Copied!" : "Copy"}
-                    </Button>
-                   
-                  </InputRightElement>
-                </InputGroup>
-                <Text color="green.500" mt={2}>
-                  {copy}
-                </Text>
-              </Box>
-              <Box mt={4}>
-                <Heading as="h3" size="md">
-                  Share Certificate:
-                </Heading>
-                <IconButton
-                  colorScheme="twitter"
-                  size="md"
-                  aria-label="Share on Twitter"
-                  icon={<FaTwitter />}
-                  onClick={() =>
-                    window.open(
-                      `https://twitter.com/intent/tweet?url=${pdfUrl}&text=Check out my certificate`
-                    )
-                  }
-                  borderRadius="full"
-                  mr={2}
-                />
-                <IconButton
-                  colorScheme="linkedin"
-                  size="md"
-                  aria-label="Share on LinkedIn"
-                  icon={<FaLinkedin />}
-                  onClick={() =>
-                    window.open(
-                      `https://www.linkedin.com/in/${linkedin}/edit/forms/certification/new/?profileFormEntryPoint=PROFILE_COMPLETION_HUB`
-                    )
-                  }
-                  borderRadius="full"
-                />
-              </Box>
-            </Box>
-          </Box>
-        )} */}
+   
       </Box>
     </ChakraProvider>
   );

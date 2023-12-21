@@ -7,7 +7,7 @@ const htmlToPdf = require("html-pdf-node");
 const { HtmlModel } = require("./models/html.models");
 const puppeteer = require("puppeteer");
 require("dotenv").config();
-const querystring = require('querystring');
+// const querystring = require('querystring');
 const { RankModel } = require("./models/hacker.models");
 const multer = require("multer");
 const path = require("path");
@@ -263,22 +263,6 @@ app.post("/pdf", async (req, res) => {
 });
 
 
-/**
- *  const id = req.params.id;
-
-  try {
-    // Use findById to fetch data based on the ID
-    const rank = await RankModel.findById(id);
-
-    if (rank) {
-      res.status(200).send({ "msg": "Getting data successfully", "data": rank });
-    } else {
-      res.status(404).send({ "msg": "Data not found" });
-    }
-  } catch (error) {
-    res.status(400).send({ "msg": "Some error occurred in getting data" });
-  }
- */
 //for image
 app.get("/image/:id", async (req, res) => {
   const id = req.params.id;
@@ -288,16 +272,7 @@ app.get("/image/:id", async (req, res) => {
   
   const rank = await RankModel.findById(id);
   console.log("rank:",rank)
-  /**
- * rank: {
-  _id: new ObjectId('658276927f947b975a21ecd2'),
-  name: 'limka',
-  course: 'pepsi',
-  type: 'coca cola',
-  linkedin: 'thumpsup',
-  __v: 0
-}
- */
+ 
   const content = `
   <!DOCTYPE html>
 <html lang="en">
@@ -453,6 +428,8 @@ app.get("/image/:id", async (req, res) => {
         </div>
       </div>
     </div>
+
+
   </div>
 </body>
 </html>
@@ -477,28 +454,7 @@ app.post("/save",async(req,res)=>{
     res.status(400).send({"msg":"some error occurred"})
   }
 })
-// Set up Multer to handle file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "uploads"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
 
-const upload = multer({ storage: storage });
-
-app.post("/upload", upload.single("file"), (req, res) => {
-  try {
-    // Assuming the uploaded file is accessible via req.file
-    const imageUrl = `http://localhost:${port}/uploads/${req.file.filename}`;
-    res.json({ imageUrl });
-  } catch (error) {
-    console.error("Image upload error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
 
 app.get("/get/:id", async (req, res) => {
   // console.log(req.params)
