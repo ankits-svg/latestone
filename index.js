@@ -263,22 +263,6 @@ app.post("/pdf", async (req, res) => {
 });
 
 
-/**
- *  const id = req.params.id;
-
-  try {
-    // Use findById to fetch data based on the ID
-    const rank = await RankModel.findById(id);
-
-    if (rank) {
-      res.status(200).send({ "msg": "Getting data successfully", "data": rank });
-    } else {
-      res.status(404).send({ "msg": "Data not found" });
-    }
-  } catch (error) {
-    res.status(400).send({ "msg": "Some error occurred in getting data" });
-  }
- */
 //for image
 app.get("/image/:id", async (req, res) => {
   const id = req.params.id;
@@ -288,16 +272,7 @@ app.get("/image/:id", async (req, res) => {
   
   const rank = await RankModel.findById(id);
   console.log("rank:",rank)
-  /**
- * rank: {
-  _id: new ObjectId('658276927f947b975a21ecd2'),
-  name: 'limka',
-  course: 'pepsi',
-  type: 'coca cola',
-  linkedin: 'thumpsup',
-  __v: 0
-}
- */
+ 
   const content = `
   <!DOCTYPE html>
 <html lang="en">
