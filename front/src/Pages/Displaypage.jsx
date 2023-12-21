@@ -71,14 +71,14 @@ const DisplayPage = () => {
   
 
   const handleTwitter=()=>{
-    window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Fbytexlnew.netlify.app%2F"+id)
+    window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Fbytexlnew.netlify.app%2Fdisplay%2F"+id)
   }
 
   const handleLinkedin = () => {
     console.log("ankit")
     
       window.open(
-        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbytexlnew.netlify.app%2F`+id,
+        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbytexlnew.netlify.app%2Fdisplay%2F`+id,
         "_blank"
       );
     
