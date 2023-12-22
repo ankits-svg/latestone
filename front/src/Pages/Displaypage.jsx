@@ -72,14 +72,14 @@ const DisplayPage = () => {
   
 
   const handleTwitter=()=>{
-    window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Ffront-g1rghek3f-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F"+id)
+    window.open("https://twitter.com/intent/tweet?url=https%3A%2F%2Ffront-bewomtvqt-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F"+id)
   }
 
   const handleLinkedin = () => {
     console.log("ankit")
     
       window.open(
-        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ffront-g1rghek3f-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F%0A`+id,
+        `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ffront-bewomtvqt-ankits-projects-b7dffc9e.vercel.app%2Fdisplay%2F`+id,
         "_blank"
       );
     
