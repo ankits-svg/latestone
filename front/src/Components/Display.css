@@ -82,6 +82,9 @@
     font-size: 2.6rem; /* Updated size for zoom responsiveness */
     color: #F26E1C;
     margin-top: 1.3rem;
+    /* white-space: wrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 

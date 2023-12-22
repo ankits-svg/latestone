@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../Components/Display.css";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import CertificateCanvas from "./CertificateCanvas";
 
 let topicsData = [
   { topic: "JavaScript (Basic)", body: "data-types, let vs const, hoisting, closures" },
@@ -87,7 +88,7 @@ const DisplayPage = () => {
 
 
   const handleDownload = () => {
-    fetch(`https://localhost:1200/image/658276927f947b975a21ecd2`)
+    fetch(`https://serverbyte.onrender.com/image/${id}`)
       .then((res) => res.json())
       .then((res) => {
         // console.log("res:",res.imageUrl)
@@ -120,7 +121,7 @@ const DisplayPage = () => {
     }}>Back</button>
     <div className="containerStyle">
       
-      <div className="leftDivStyle" >
+    <div className="leftDivStyle" >
         <div className="template">
           <img src="https://i.ibb.co/pPL1QB3/leftdiv.png" alt="temp" />
           {/* <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/291668301-8abfda8d-ca09-45a2-a139-fbf561592c9a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231219T173634Z&X-Amz-Expires=300&X-Amz-Signature=95468014ee86865509ea8a3cb411b09ae89a830dc326601faf662ecdd31681d6&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745" alt="alt" /> */}
@@ -167,6 +168,7 @@ const DisplayPage = () => {
         </div>
       </div>
 
+      {/* <CertificateCanvas/> */}
       <div className="rightDivStyle">
         {/* <h1>Right Div (30%)</h1> */}
         <div>
