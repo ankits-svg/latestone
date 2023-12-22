@@ -11,6 +11,7 @@ require("dotenv").config();
 const { RankModel } = require("./models/hacker.models");
 const multer = require("multer");
 const path = require("path");
+// const { fetch } = require("node-fetch");
 // const BitlyClient = require('bitly').BitlyClient;
 
 port = process.env.port || 2200;
@@ -262,17 +263,16 @@ app.post("/pdf", async (req, res) => {
   }
 });
 
-
 //for image
 app.get("/image/:id", async (req, res) => {
   const id = req.params.id;
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   // const {name,type,course,linkedin}=req.body;
-  
+
   const rank = await RankModel.findById(id);
-  console.log("rank:",rank)
- 
+  console.log("rank:", rank);
+
   const content = `
   <!DOCTYPE html>
 <html lang="en">
@@ -415,10 +415,11 @@ app.get("/image/:id", async (req, res) => {
       <div class="programming-language">${rank.course}</div>
       <div class="footer">
         <div class="bet-1">
-          <h3><strong class="date">${new Date().toLocaleDateString(
-            "en-US",
-            { day: "numeric", month: "short", year: "numeric" }
-          )}</strong></h3>
+          <h3><strong class="date">${new Date().toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}</strong></h3>
           <h4>Date of Achievement</h4>
         </div>
         <div class="bet">
@@ -443,18 +444,21 @@ app.get("/image/:id", async (req, res) => {
   await browser.close();
 });
 
-
-app.post("/save",async(req,res)=>{
-  const {name,course,type,linkedin}=req.body;
+app.post("/save", async (req, res) => {
+  const { name, course, type, linkedin } = req.body;
   try {
-    const rank=new RankModel({name:name,course:course,type:type,linkedin})
-    await rank.save()
-    res.status(200).send({"msg":"save data successfully","data":rank})
+    const rank = new RankModel({
+      name: name,
+      course: course,
+      type: type,
+      linkedin,
+    });
+    await rank.save();
+    res.status(200).send({ msg: "save data successfully", data: rank });
   } catch (error) {
-    res.status(400).send({"msg":"some error occurred"})
+    res.status(400).send({ msg: "some error occurred" });
   }
-})
-
+});
 
 app.get("/get/:id", async (req, res) => {
   // console.log(req.params)
@@ -465,14 +469,31 @@ app.get("/get/:id", async (req, res) => {
     const rank = await RankModel.findById(id);
 
     if (rank) {
-      res.status(200).send({ "msg": "Getting data successfully", "data": rank });
+      res.status(200).send({ msg: "Getting data successfully", data: rank });
     } else {
-      res.status(404).send({ "msg": "Data not found" });
+      res.status(404).send({ msg: "Data not found" });
     }
   } catch (error) {
-    res.status(400).send({ "msg": "Some error occurred in getting data" });
+    res.status(400).send({ msg: "Some error occurred in getting data" });
   }
 });
+
+// app.get("/img", async (req, res) => {
+//   const {name,type,course,linkedin}=req.body
+//   try {
+//     const response = await fetch(
+//       "https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/292399089-2acf2b4b-8cd8-436d-bcdc-4b2d5adbd454.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231222%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231222T071602Z&X-Amz-Expires=300&X-Amz-Signature=376de1aaca89673d94e0721c784084cacc3847afe2f51040393861ec09c5c366&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745"
+//     ); // Replace with the actual image URL
+//     const blob = await response.blob();
+//     console.log("blob:",blob)
+//     res.header("Access-Control-Allow-Origin", "*"); // Adjust the CORS policy as needed
+//     res.header("Content-Type", "image/png");
+//     res.send(await blob.arrayBuffer());
+//   } catch (error) {
+//     console.error("Error fetching image:", error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 app.listen(port, async () => {
   try {
@@ -485,6 +506,3 @@ app.listen(port, async () => {
   }
   console.log(`Server is running at ${port}`);
 });
-
-
-
