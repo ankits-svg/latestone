@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../Components/Display.css";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import CertificateCanvas from "./CertificateCanvas";
+import html2canvas from 'html2canvas';
 
 let topicsData = [
   { topic: "JavaScript (Basic)", body: "data-types, let vs const, hoisting, closures" },
@@ -88,29 +89,23 @@ const DisplayPage = () => {
 
 
   const handleDownload = () => {
-    fetch(`https://serverbyte.onrender.com/image/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        // console.log("res:",res.imageUrl)
-        setImage(res.imageUrl)
-        alert('Downloading starts')
-        if (image) {
-          // Create a temporary link element
-          const link = document.createElement("a");
-          link.href = image;
-          link.download = "Certificate.png";
-          document.body.appendChild(link);
-    
-          // Trigger the click event to start the download
-          link.click();
-    
-          // Remove the link from the document
-          document.body.removeChild(link);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const elementToCapture = document.querySelector('.leftDivStyle');
+
+  // Use html2canvas to capture the content
+  html2canvas(elementToCapture).then((canvas) => {
+    // Convert the canvas to a data URL
+    const dataURL = canvas.toDataURL();
+
+    // Create a link element to download the screenshot
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'screenshot.png';
+
+    // Trigger a click on the link to start the download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
   };
 
 
@@ -199,7 +194,7 @@ const DisplayPage = () => {
           <button onClick={handleCopyClick}>Copy</button>
         </div>
         <div>
-          <button style={{ padding: "0.3125rem" }} onClick={handleDownload}>Download</button>
+          {/* <button style={{ padding: "0.3125rem" }} onClick={handleDownload}>Download</button> */}
         </div>
         <div>
           <h3>{topic}</h3>
