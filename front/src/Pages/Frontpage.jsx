@@ -39,6 +39,15 @@ const Frontpage = () => {
     let obj={
       name:name,type:type,course:course,linkedin:linkedin
     }
+
+    // Update the Open Graph meta tags dynamically
+    const ogTitle = document.getElementById('meta-og-title');
+    const ogImage = document.getElementById('meta-og-image');
+    const ogUrl = document.getElementById('meta-og-url');
+
+    ogTitle.setAttribute('content', `ByteXL ${type} Certificate`);
+    ogImage.setAttribute('content', `URL_of_the_certificate_image`);
+    ogUrl.setAttribute('content', `URL_of_the_certificate_page`);
     // console.log("obj:",obj)
     fetch("https://serverbyte.onrender.com/save",{
       method:"POST",

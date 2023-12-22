@@ -40,7 +40,7 @@ const DisplayPage = () => {
   const navigate=useNavigate()
   const [image,setImage]=useState("")
   const [encode,setEncode]=useState("")
-  // console.log("currentUrl:",currentUrl)
+  console.log("currentUrl:",currentUrl)
   // console.log("id:",id);
 
   let newBody; 
@@ -54,12 +54,28 @@ const DisplayPage = () => {
         newBody = topicsData.find((el) => el.topic === res.data.course);
         setBody(newBody.body)
         setTopic(newBody.topic)
+        // Update the Open Graph meta tags dynamically
+        // Assume you have an image URL and certificate page URL in the response
+        const imageUrl = "http://localhost:3002/display/6585771b4f70ea2faaf6d6f1"; // Replace with the actual image URL
+        const certificateUrl = "URL_of_the_certificate_page"; // Replace with the actual certificate page URL
+
+        // Update the Open Graph meta tags dynamically
+        const ogTitle = document.getElementById('meta-og-title');
+        const ogImage = document.getElementById('meta-og-image');
+        const ogUrl = document.getElementById('meta-og-url');
+
+        ogTitle.setAttribute('content', `ByteXL ${res.data.type} Certificate`);
+        ogImage.setAttribute('content', imageUrl);
+        ogUrl.setAttribute('content', currentUrl);
+
+        document.getElementById('twitter-image').setAttribute('content', imageUrl);
+        // console.log("newbody", newBody);
         console.log("newbody",newBody);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [url]);
 
   const handleCopyClick = () => {
     // console.log(inputRef.current)
