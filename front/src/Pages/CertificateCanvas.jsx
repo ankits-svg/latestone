@@ -1,18 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 
-const CertificateCanvas = () => {
+const CertificateCanvas = ({ data,props }) => {
+  const [a, setA] = useState("");
+  // const [pr,setPr]=useState("")
+  console.log("datacert:", data);
+  const { name, type, course } = data;
+  // console.log(name,type,course,props)
+  
+  // console.log("props:",props)
   useEffect(() => {
+
+    
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
-
+    // const { name, type, course } = data;
+    // console.log("asdad:",canvas.toDataURL())
     // Draw a border
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
     // Load and draw image to fit the canvas
     const img = new Image();
+    // img.setAttribute('crossorigin', 'anonymous');
+    img.crossOrigin = 'anonymous';
     img.onload = function () {
       // Calculate the scale factor to fit the image within the canvas
-      const scaleFactor = Math.min(canvas.width / img.width, canvas.height / img.height);
+      const scaleFactor = Math.min(
+        canvas.width / img.width,
+        canvas.height / img.height
+      );
 
       // Calculate the new dimensions for the image
       const newWidth = img.width * scaleFactor;
@@ -25,9 +40,23 @@ const CertificateCanvas = () => {
       // Draw the image on the canvas
       ctx.drawImage(img, x, y, newWidth, newHeight);
 
+
+      
       drawContent();
+      setA(canvas);
+      props(a)
+      // console.log()
+      // canvas.toBlob((blob) => {
+      //   const url = URL.createObjectURL(blob);
+      //   console.log("url:",url)
+      //   // Now 'url' contains the data URL equivalent
+      // });
     };
-    img.src = 'log.png'; // Replace with the actual path to your image
+    // img.setAttribute('crossOrigin', 'anonymous'); 
+    img.src = require("./log.png");
+    
+    
+    // Replace with the actual path to your image
 
     function drawContent() {
       // Styles for text drawing
@@ -47,19 +76,23 @@ const CertificateCanvas = () => {
       ctx.fillStyle = "#F26E1C";
       ctx.fillText("of", canvas.width - 250, 160);
       ctx.fillStyle = "#1DA1F2";
-      ctx.fillText("Participation", canvas.width - 160, 200);
+      ctx.fillText(`${type}`, canvas.width - 160, 200);
       ctx.font = "20px Arial";
       ctx.fillStyle = "black";
       ctx.fillText("This is to certify that", canvas.width - 170, 240);
       ctx.font = "bold auto Arial";
       ctx.fillStyle = "#F26E1C";
-      ctx.fillText("Ankit sharma", canvas.width - 210, 300);
+      ctx.fillText(`${name}`, canvas.width - 210, 300);
       ctx.font = "20px Arial";
       ctx.fillStyle = "black";
-      ctx.fillText("has successfully cleared the assessment for the skill", canvas.width - 30, 340);
+      ctx.fillText(
+        "has successfully cleared the assessment for the skill",
+        canvas.width - 30,
+        340
+      );
       ctx.font = "italic bold 1.42rem Arial";
       ctx.fillStyle = "#F26E1C";
-      ctx.fillText("Programming Language", 660, 380);
+      ctx.fillText(`${course}`, 660, 380);
 
       // Draw footer
       ctx.textAlign = "start";
@@ -76,7 +109,11 @@ const CertificateCanvas = () => {
       );
       ctx.font = "15px Arial";
       ctx.fillStyle = "orange";
-      ctx.fillText("Date of Achievement", canvas.width - 470, canvas.height - 80);
+      ctx.fillText(
+        "Date of Achievement",
+        canvas.width - 470,
+        canvas.height - 80
+      );
 
       // Draw the image
       const img = new Image();
@@ -84,17 +121,43 @@ const CertificateCanvas = () => {
         ctx.drawImage(img, canvas.width - 170, canvas.height - 150, 50, 40);
         ctx.font = "15px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText("Karun Tadepalli", canvas.width - 200, canvas.height - 100);
+        ctx.fillText(
+          "Karun Tadepalli",
+          canvas.width - 200,
+          canvas.height - 100
+        );
         ctx.font = "italic 15px Arial";
         ctx.fillStyle = "orange";
-        ctx.fillText("CEO & Co-founder", canvas.width - 210, canvas.height - 80);
+        ctx.fillText(
+          "CEO & Co-founder",
+          canvas.width - 210,
+          canvas.height - 80
+        );
       };
-      img.src = 'https://ankit-123.my.canva.site/098/images/219f937dae02a117e97806b886894bfd.png'; // Replace with the actual path to your image
+      img.src =
+        "https://ankit-123.my.canva.site/098/images/219f937dae02a117e97806b886894bfd.png"; // Replace with the actual path to your image
     }
-  }, []);
+
+    // console.log("asdad:",canvas.toDataURL("image/png"))
+    
+  }, [name,type,course]);
+
+  // console.log("a", a);
 
   return (
-    <canvas id="myCanvas" width="800" height="560" style={{ border: '1px solid #000' }}></canvas>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <canvas
+        id="myCanvas"
+        width="800"
+        height="560"
+        style={{ border: "1px solid #000" }}
+      ></canvas>
+
+      
+      {/* <div>
+        <img src={a} alt="sda" />
+      </div> */}
+    </div>
   );
 };
 

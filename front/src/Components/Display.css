@@ -160,7 +160,17 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    
 }
+@media screen and (max-width: 770px) {
+    .leftDivStyle {
+      width: 70%;
+    }
+  
+    .rightDivStyle {
+      display: none;
+    }
+  }
 
 .copyButtonStyle {
     margin-left: 0.625rem;

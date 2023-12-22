@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 
 let topicsData = [
@@ -67,6 +68,13 @@ const Frontpage = () => {
   return (
     <div>
       <h1>form page</h1>
+      <Helmet>
+          {/* Update meta tags, titles, and other head elements here */}
+          <title>Your Page Title</title>
+          <meta name="description" content="Description of your page" />
+          <meta property="og:title" content={`ByteXL ${type} Certificate`} />
+          {/* Add more meta tags as needed */}
+        </Helmet>
       <div>
         Name:{" "}
         <input
