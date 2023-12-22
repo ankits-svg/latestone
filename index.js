@@ -321,6 +321,7 @@ app.get("/image/:id", async (req, res) => {
     top: 10px;
     right: -5%;
     font-size: 20px;
+    
   }
   .title {
     font-weight: bold;
