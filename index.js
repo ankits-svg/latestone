@@ -1,6 +1,6 @@
 const express = require("express");
 const { connection } = require("./config/db");
-// const path = require("path");
+const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 const htmlToPdf = require("html-pdf-node");
@@ -19,7 +19,15 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use(cors());
 app.use(express.json());
 // app.use('',encodeURI())
-
+// app.use(bodyParser.json({limit: "50mb", extended: true}));
+// app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb' }));
+// bodyParser = {
+//   json: {limit: '50mb', extended: true},
+//   urlencoded: {limit: '50mb', extended: true}
+// };
+// app.use(bodyParser)
 app.get("/:id", async (req, res) => {
   console.log("req", req.params);
   const { id } = req.params;
@@ -452,7 +460,8 @@ app.post("/save", async (req, res) => {
       name: name,
       course: course,
       type: type,
-      linkedin,
+      linkedin:"ankit-sharma",
+      imageUrl:"sample.png"
     });
     await rank.save();
     res.status(200).send({ msg: "save data successfully", data: rank });
@@ -479,22 +488,20 @@ app.get("/get/:id", async (req, res) => {
   }
 });
 
-// app.get("/img", async (req, res) => {
-//   const {name,type,course,linkedin}=req.body
-//   try {
-//     const response = await fetch(
-//       "https://github-production-user-asset-6210df.s3.amazonaws.com/103572350/292399089-2acf2b4b-8cd8-436d-bcdc-4b2d5adbd454.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231222%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231222T071602Z&X-Amz-Expires=300&X-Amz-Signature=376de1aaca89673d94e0721c784084cacc3847afe2f51040393861ec09c5c366&X-Amz-SignedHeaders=host&actor_id=103572350&key_id=0&repo_id=497514745"
-//     ); // Replace with the actual image URL
-//     const blob = await response.blob();
-//     console.log("blob:",blob)
-//     res.header("Access-Control-Allow-Origin", "*"); // Adjust the CORS policy as needed
-//     res.header("Content-Type", "image/png");
-//     res.send(await blob.arrayBuffer());
-//   } catch (error) {
-//     console.error("Error fetching image:", error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
+app.post("/update/:id", async (req, res) => {
+  // console.log("Request Body:", req.body);
+  const { id } = req.params;
+  const { imageUrl } = req.body;
+
+  try {
+    // Update the database with the imageUrl
+    await RankModel.findByIdAndUpdate(id, { imageUrl });
+    res.send({ success: true, message: "Database updated successfully." });
+  } catch (error) {
+    console.error("Error updating database:", error);
+    res.status(500).json({ success: false, message: "Internal server error." });
+  }
+});
 
 app.listen(port, async () => {
   try {

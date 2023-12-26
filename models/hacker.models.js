@@ -5,7 +5,7 @@ const rankSchema=mongoose.Schema({
     course: String,
     type:String,
     linkedin: String,
-
+    imageUrl:String
 })
 
 const RankModel=mongoose.model("rank",rankSchema)
